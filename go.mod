@@ -1,3 +1,3 @@
-module aoc-2023
+module aoc-2022
 
 go 1.18
