@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -17,7 +18,7 @@ func main() {
 	contentStr := string(content)
 
 	calorieSets := strings.Split(contentStr, "\n\n")
-	var maxCalorie int
+	var maxCalories []int
 
 	for _, calories := range calorieSets {
 		itemsStr := strings.Split(calories, "\n")
@@ -29,10 +30,12 @@ func main() {
 			totalCalories += itemCalories
 		}
 
-		if totalCalories > maxCalorie {
-			maxCalorie = totalCalories
-		}
+		maxCalories = append(maxCalories, totalCalories)
 	}
 
-	fmt.Println(maxCalorie)
+	sort.Ints(maxCalories)
+
+	topThree := maxCalories[len(maxCalories)-3:]
+
+	fmt.Println(topThree[0] + topThree[1] + topThree[2])
 }
