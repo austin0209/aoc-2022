@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func main() {
+func SolveTemplate() {
 	content, err := os.ReadFile("input/day02.txt")
 	if err != nil {
 		log.Fatal(err)

@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func main() {
+func SolveDay01() {
 	content, err := os.ReadFile("input/day01.txt")
 	if err != nil {
 		log.Fatal(err)
