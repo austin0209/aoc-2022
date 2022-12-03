@@ -24,11 +24,11 @@ func SolveDay02() {
 
 		switch line {
 		case "A X":
-			score = 4
-		case "A Y":
-			score = 8
-		case "A Z":
 			score = 3
+		case "A Y":
+			score = 4
+		case "A Z":
+			score = 8
 		case "B X":
 			score = 1
 		case "B Y":
@@ -36,11 +36,11 @@ func SolveDay02() {
 		case "B Z":
 			score = 9
 		case "C X":
-			score = 7
-		case "C Y":
 			score = 2
-		case "C Z":
+		case "C Y":
 			score = 6
+		case "C Z":
+			score = 7
 		}
 
 		scores = append(scores, score)
