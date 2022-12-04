@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-// Contains True if range1 contains range2.
+// Contains True if range1 contains range2 OR vice versa.
 func Contains(range1 []string, range2 []string) bool {
 	lower1, _ := strconv.Atoi(range1[0])
 	upper1, _ := strconv.Atoi(range1[1])
@@ -16,7 +16,17 @@ func Contains(range1 []string, range2 []string) bool {
 	lower2, _ := strconv.Atoi(range2[0])
 	upper2, _ := strconv.Atoi(range2[1])
 
-	return lower1 >= lower2 && upper1 <= upper2
+	return lower1 >= lower2 && upper1 <= upper2 || lower2 >= lower1 && upper2 <= upper1
+}
+
+func Overlaps(range1 []string, range2 []string) bool {
+	lower1, _ := strconv.Atoi(range1[0])
+	upper1, _ := strconv.Atoi(range1[1])
+
+	lower2, _ := strconv.Atoi(range2[0])
+	upper2, _ := strconv.Atoi(range2[1])
+
+	return Contains(range1, range2) || (lower1 >= lower2 && lower1 <= upper2) || (upper1 <= upper2 && upper1 >= lower2)
 }
 
 func SolveDay04() {
@@ -29,10 +39,11 @@ func SolveDay04() {
 
 	lines := strings.Split(contentStr, "\n")
 
-	total := 0
+	part1Total := 0
+	part2Total := 0
 
 	for _, line := range lines {
-		if line == ""{
+		if line == "" {
 			continue
 		}
 
@@ -41,10 +52,14 @@ func SolveDay04() {
 		range1 := strings.Split(pair[0], "-")
 		range2 := strings.Split(pair[1], "-")
 
-		if Contains(range1, range2) || Contains(range2, range1) {
-			total++
+		if Contains(range1, range2) {
+			part1Total++
+		}
+
+		if Overlaps(range1, range2) {
+			part2Total++
 		}
 	}
 
-	fmt.Println(total)
+	fmt.Printf("Part 1: %d\nPart 2: %d", part1Total, part2Total)
 }
