@@ -29,12 +29,11 @@ func SolveDay03() {
 
 	var total int32
 
-	for _, line := range lines {
-		leftComp := line[:len(line) / 2]
-		rightComp := line[len(line) / 2:]
+	for i := 0; i < len(lines) - 2; i += 3 {
+		line1, line2, line3 := lines[i], lines[i + 1], lines[i + 2]
 
-		for _, c := range leftComp {
-			if strings.Contains(rightComp, string(c)) {
+		for _, c := range line1 {
+			if strings.Contains(line2, string(c)) && strings.Contains(line3, string(c)) {
 				priority, err := GetPriority(c)
 				if err != nil {
 					log.Fatal(err)
