@@ -8,7 +8,7 @@ import (
 )
 
 func SolveTemplate() {
-	content, err := os.ReadFile("input/day02.txt")
+	content, err := os.ReadFile("input/REPLACEME.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
