@@ -47,7 +47,7 @@ func SolveDay05() {
 		removed := (*fromStack)[len(*fromStack)-move:]
 
 		for i, _ := range removed {
-			*toStack = append(*toStack, removed[len(removed)-1-i])
+			*toStack = append(*toStack, removed[i])
 		}
 
 		*fromStack = (*fromStack)[:len(*fromStack)-move]
