@@ -14,14 +14,27 @@ func SolveDay06() {
 
 	input := string(content)
 
-	for i := 0; i < len(input)-4; i++ {
-		c1, c2, c3, c4 := input[i], input[i+1], input[i+2], input[i+3]
+	for i := 0; i < len(input)-14; i++ {
+		seen := make(map[uint8]struct{})
 
-		if c1 == c2 || c1 == c3 || c1 == c4 || c2 == c3 || c2 == c4 || c3 == c4 {
+		mark := true
+
+		for j := i; j < i+14; j++ {
+			_, exists := seen[input[j]]
+
+			if exists {
+				mark = false
+				break
+			}
+
+			seen[input[j]] = struct{}{}
+		}
+
+		if !mark {
 			continue
 		}
 
-		fmt.Println(i + 4)
+		fmt.Println(i + 14)
 		break
 	}
 }
