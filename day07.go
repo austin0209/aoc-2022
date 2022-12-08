@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -82,14 +83,20 @@ func SolveDay07() {
 		}
 	}
 
-	ans := 0
+	sizes := make([]int, 0)
 
 	for _, d := range dirs {
-		s := d.GetTotalSize()
-		if s <= 100_000 {
-			ans += s
-		}
+		sizes = append(sizes, d.GetTotalSize())
 	}
 
-	fmt.Println(ans)
+	sort.Ints(sizes)
+
+	unusedSpace := 70_000_000 - sizes[len(sizes)-1]
+
+	for _, s := range sizes {
+		if s + unusedSpace >= 30_000_000 {
+			fmt.Println(s)
+			return
+		}
+	}
 }
